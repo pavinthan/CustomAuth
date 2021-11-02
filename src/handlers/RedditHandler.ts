@@ -1,5 +1,6 @@
-import { get } from "@toruslabs/http-helpers";
+// import { get } from "@toruslabs/http-helpers";
 import deepmerge from "deepmerge";
+import log from "loglevel";
 
 import { LOGIN_TYPE, UX_MODE_TYPE } from "../utils/enums";
 import AbstractLoginHandler from "./AbstractLoginHandler";
@@ -45,12 +46,13 @@ export default class RedditHandler extends AbstractLoginHandler {
 
   async getUserInfo(params: LoginWindowResponse): Promise<TorusVerifierResponse> {
     const { accessToken } = params;
-    const userInfo = await get<{ icon_img: string; name: string }>("https://oauth.reddit.com/api/v1/me", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    const { icon_img: profileImage = "", name = "" } = userInfo;
+    log.info(accessToken);
+    // const userInfo = await get<{ icon_img: string; name: string }>("https://oauth.reddit.com/api/v1/me", {
+    //   headers: {
+    //     Authorization: `Bearer ${accessToken}`,
+    //   },
+    // });
+    const { icon_img: profileImage = "", name = "" } = {};
     return {
       email: "",
       name,
