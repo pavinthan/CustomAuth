@@ -21,8 +21,8 @@ export const verifierMap = {
   [GOOGLE]: {
     name: "Google",
     typeOfLogin: "google",
-    clientId: "221898609709-obfn3p63741l5333093430j3qeiinaa8.apps.googleusercontent.com",
-    verifier: "google-lrc",
+    clientId: "876733105116-80tsjqj79glh40206qnuq0uri8dk1o5s.apps.googleusercontent.com",
+    verifier: "torus",
   },
   [FACEBOOK]: { name: "Facebook", typeOfLogin: "facebook", clientId: "617201755556395", verifier: "facebook-lrc" },
   [REDDIT]: { name: "Reddit", typeOfLogin: "jwt", clientId: "RKlRuuRoDKOItbJSoOZabDLzizvd1uKn", verifier: "torus-reddit-test" },

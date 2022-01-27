@@ -138,7 +138,7 @@ export default Vue.extend({
       const torusdirectsdk = new TorusSdk({
         baseUrl: `${location.origin}/serviceworker`,
         enableLogging: true,
-        network: "testnet", // details for test net
+        network: "cyan", // details for test net
       });
       await torusdirectsdk.init({ skipSw: false });
       this.torusdirectsdk = torusdirectsdk;

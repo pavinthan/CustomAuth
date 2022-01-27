@@ -119,13 +119,10 @@ export default Vue.extend({
         const jwtParams = this.loginToConnectionMap[this.selectedVerifier] || {};
         const { typeOfLogin, clientId, verifier } = verifierMap[this.selectedVerifier];
         console.log(hash, queryParameters, typeOfLogin, clientId, verifier, jwtParams);
-        const loginDetails: TorusLoginResponse = await this.torusdirectsdk.triggerLogin({
-          typeOfLogin,
-          verifier,
-          clientId,
-          jwtParams,
-          hash,
-          queryParameters,
+        const loginDetails = await this.torusdirectsdk.triggerAggregateLogin({
+          subVerifierDetailsArray: [{ typeOfLogin, verifier, clientId, jwtParams, hash, queryParameters }],
+          verifierIdentifier: "tkey-google-cyan",
+          aggregateVerifierType: "single_id_verifier",
         });
 
         this.provider = await EthereumPrivateKeyProvider.getProviderInstance({
@@ -139,8 +136,9 @@ export default Vue.extend({
           },
           privKey: loginDetails.privateKey,
         });
+        console.log(loginDetails);
 
-        this.loginResponse = loginDetails;
+        // this.loginResponse = loginDetails;
 
         // const loginDetails = await this.torusdirectsdk.triggerHybridAggregateLogin({
         //   singleLogin: {
@@ -289,7 +287,7 @@ export default Vue.extend({
         uxMode: UX_MODE.POPUP,
         baseUrl: `${location.origin}/serviceworker`,
         enableLogging: true,
-        network: "testnet", // details for test net
+        network: "cyan", // details for test net
         popupFeatures: `titlebar=0,toolbar=0,status=0,location=0,menubar=0,height=500,width=500,top=100,left=100`,
       });
       // note: Due to browser restrictions on popups, you should reduce the time taken

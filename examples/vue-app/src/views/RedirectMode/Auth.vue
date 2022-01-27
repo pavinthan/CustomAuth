@@ -149,8 +149,7 @@ export default Vue.extend({
       redirectPathName: "auth",
       enableLogging: true,
       uxMode: "redirect",
-      network: "testnet",
-      skipFetchingNodeDetails: true,
+      network: "cyan",
     });
     const loginDetails = await torusdirectsdk.getRedirectResult();
     this.provider = await EthereumPrivateKeyProvider.getProviderInstance({
